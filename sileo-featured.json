@@ -1,6 +1,6 @@
 {
     "success": true,
-    "page": "https://tdzard94.github.io/ShadowFlowRepo/",
+    "page": "https://shadowflow-repo.zios.tools/",
     "version": "2.0.0",
     "packages": [
         {
@@ -8,8 +8,8 @@
             "name": "ShadowFlow",
             "version": "2.0.0",
             "description": "iOS Jailbreak Automation Toolchain",
-            "depiction": "https://tdzard94.github.io/ShadowFlowRepo/depictions/web/com.shadowtech.shadowflow.html",
-            "nativeDepiction": "https://tdzard94.github.io/ShadowFlowRepo/depictions/native/com.shadowtech.shadowflow/depiction.json"
+            "depiction": "https://shadowflow-repo.zios.tools/depictions/web/com.shadowtech.shadowflow.html",
+            "nativeDepiction": "https://shadowflow-repo.zios.tools/depictions/native/com.shadowtech.shadowflow/depiction.json"
         }
     ]
 }

@@ -17,8 +17,8 @@ Depiction: https://shadowflow-repo.zios.tools/depictions/web/?p=com.shadowtech.s
 Name: ShadowFlow
 Sileodepiction: https://shadowflow-repo.zios.tools/depictions/native/com.shadowtech.shadowflow/depiction.json
 
-Depiction: https://tdzard94.github.io/ShadowFlowRepo/depictions/web/com.shadowtech.shadowflow.html
-SileoDepiction: https://tdzard94.github.io/ShadowFlowRepo/depictions/native/com.shadowtech.shadowflow/depiction.json
+Depiction: https://shadowflow-repo.zios.tools/depictions/web/com.shadowtech.shadowflow.html
+SileoDepiction: https://shadowflow-repo.zios.tools/depictions/native/com.shadowtech.shadowflow/depiction.json
 
 dpkg-scanpackages: warning: Packages in archive but missing from override file:
 dpkg-scanpackages: warning:   com.shadowtech.shadowflow

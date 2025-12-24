@@ -4,7 +4,7 @@
     "itemCornerRadius": 12,
     "banners": [
         {
-            "url": "https://tdzard94.github.io/ShadowFlowRepo/depictions/native/com.shadowtech.shadowflow/depiction.json",
+            "url": "https://shadowflow-repo.zios.tools/depictions/native/com.shadowtech.shadowflow/depiction.json",
             "title": "ShadowFlow",
             "package": "com.shadowtech.shadowflow",
             "hideShadow": false
