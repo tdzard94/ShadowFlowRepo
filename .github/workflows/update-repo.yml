@@ -1,0 +1,51 @@
+name: 📦 Update Repo
+
+on:
+  push:
+    paths:
+      - 'debs/**'
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  update-repo:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+
+      - name: 🔧 Install dpkg-scanpackages
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y dpkg-dev bzip2 xz-utils zstd
+
+      - name: 📦 Generate Packages file
+        run: |
+          cd ${{ github.workspace }}
+          
+          # Create debs folder if not exists
+          mkdir -p debs
+          
+          # Generate Packages file
+          dpkg-scanpackages debs /dev/null > Packages
+          
+          # Create compressed versions for Sileo/Cydia compatibility
+          bzip2 -k -f Packages
+          xz -k -f Packages
+          gzip -k -f Packages
+          zstd -k -f Packages
+          
+          echo "✅ Generated Packages files:"
+          ls -la Packages*
+
+      - name: 📤 Commit and Push
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add Packages* Release
+          git diff --staged --quiet || git commit -m "📦 Update Packages [$(date +'%Y-%m-%d %H:%M')]"
+          git push

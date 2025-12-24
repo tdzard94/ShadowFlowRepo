@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShadowFlow Repo</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <style>
+        :root {
+            --primary: #8B5CF6;
+            --primary-hover: #7C3AED;
+        }
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            padding: 2rem;
+        }
+        .hero {
+            text-align: center;
+            padding: 3rem 0;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #8B5CF6, #EC4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+        .hero p {
+            color: #94a3b8;
+            font-size: 1.2rem;
+        }
+        .badges {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin: 1.5rem 0;
+        }
+        .badge {
+            background: rgba(139, 92, 246, 0.2);
+            color: #c4b5fd;
+            padding: 0.4rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            backdrop-filter: blur(10px);
+        }
+        .card h3 {
+            color: #f1f5f9;
+            margin-top: 0;
+        }
+        .repo-url {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(139, 92, 246, 0.5);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            font-family: monospace;
+            color: #c4b5fd;
+            word-break: break-all;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+        .btn-add {
+            display: inline-block;
+            background: linear-gradient(135deg, #8B5CF6, #7C3AED);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .btn-add:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(139, 92, 246, 0.3);
+            color: white;
+        }
+        .packages-list {
+            margin-top: 1rem;
+        }
+        .package-item {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .package-name {
+            color: #f1f5f9;
+            font-weight: 600;
+        }
+        .package-version {
+            color: #8B5CF6;
+            font-size: 0.9rem;
+        }
+        table {
+            background: transparent;
+        }
+        th, td {
+            border-color: rgba(255, 255, 255, 0.1);
+            color: #e2e8f0;
+        }
+        th {
+            background: rgba(139, 92, 246, 0.2);
+            color: #c4b5fd;
+        }
+        footer {
+            text-align: center;
+            color: #64748b;
+            padding: 2rem 0;
+            font-size: 0.9rem;
+        }
+        footer a {
+            color: #8B5CF6;
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <div class="hero">
+            <h1>🌑 ShadowFlow</h1>
+            <p>Your awesome tweaks repository</p>
+            <div class="badges">
+                <span class="badge">✓ Rootful</span>
+                <span class="badge">✓ Rootless</span>
+                <span class="badge">✓ Roothide</span>
+                <span class="badge">✓ Sileo</span>
+                <span class="badge">✓ Zebra</span>
+                <span class="badge">✓ Cydia</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>📦 Add Repository</h3>
+            <p>Copy this URL and add it to your package manager:</p>
+            <div class="repo-url" id="repoUrl">https://tdzard94.github.io/ShadowFlowRepo/</div>
+            <div style="text-align: center;">
+                <a href="cydia://url/https://cydia.saurik.com/api/share#?source=https://tdzard94.github.io/ShadowFlowRepo/" class="btn-add">
+                    ➕ Add to Cydia
+                </a>
+                <a href="sileo://source/https://tdzard94.github.io/ShadowFlowRepo/" class="btn-add">
+                    ➕ Add to Sileo
+                </a>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>📱 Available Packages</h3>
+            <div class="packages-list" id="packagesList">
+                <!-- Packages will be listed here -->
+                <p style="color: #94a3b8; text-align: center;">Add your .deb files to the <code>debs/</code> folder</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>💡 Compatibility</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Jailbreak Type</th>
+                        <th>Architecture</th>
+                        <th>Supported</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Rootful (unc0ver, checkra1n)</td>
+                        <td>iphoneos-arm</td>
+                        <td>✅</td>
+                    </tr>
+                    <tr>
+                        <td>Rootless (Dopamine, palera1n)</td>
+                        <td>iphoneos-arm64</td>
+                        <td>✅</td>
+                    </tr>
+                    <tr>
+                        <td>Roothide</td>
+                        <td>iphoneos-arm64</td>
+                        <td>✅</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <footer>
+            Made with ❤️ for the jailbreak community<br>
+            <a href="https://github.com/YOUR_USERNAME/ShadowFlowRepo">GitHub</a>
+        </footer>
+    </main>
+
+    <script>
+        // Auto-update repo URL based on current location
+        const repoUrl = document.getElementById('repoUrl');
+        if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+            const url = window.location.origin + window.location.pathname.replace(/\/[^\/]*$/, '/');
+            repoUrl.textContent = url;
+            
+            // Update add buttons
+            document.querySelectorAll('.btn-add').forEach(btn => {
+                btn.href = btn.href.replace(/YOUR_USERNAME\.github\.io\/ShadowFlowRepo\//g, 
+                    window.location.host + window.location.pathname.replace(/\/[^\/]*$/, '/'));
+            });
+        }
+    </script>
+</body>
+</html>
