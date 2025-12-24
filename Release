@@ -6,3 +6,4 @@ Codename: ios
 Architectures: iphoneos-arm iphoneos-arm64 iphoneos-arm64e
 Components: main
 Description: ShadowFlow - iOS Jailbreak Automation Toolchain
+Support: https://github.com/tdzard94/ShadowFlowRepo/issues

@@ -4,216 +4,692 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ShadowFlow Repo</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         :root {
             --primary: #8B5CF6;
-            --primary-hover: #7C3AED;
+            --primary-glow: rgba(139, 92, 246, 0.4);
+            --secondary: #EC4899;
+            --accent: #06B6D4;
+            --bg-dark: #0a0a0f;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --border: rgba(255, 255, 255, 0.08);
         }
+        
         body {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
             min-height: 100vh;
+            color: var(--text-primary);
+            overflow-x: hidden;
         }
+        
+        /* Animated Background */
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .bg-gradient::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(236, 72, 153, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 40% 60%, rgba(6, 182, 212, 0.08) 0%, transparent 40%);
+            animation: bgMove 20s ease-in-out infinite;
+        }
+        
+        @keyframes bgMove {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(2%, 2%) rotate(1deg); }
+            66% { transform: translate(-1%, 1%) rotate(-1deg); }
+        }
+        
+        /* Floating Orbs */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.5;
+            animation: float 15s ease-in-out infinite;
+            pointer-events: none;
+        }
+        
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: var(--primary);
+            top: -100px;
+            right: -100px;
+            animation-delay: 0s;
+        }
+        
+        .orb-2 {
+            width: 300px;
+            height: 300px;
+            background: var(--secondary);
+            bottom: -50px;
+            left: -50px;
+            animation-delay: -5s;
+        }
+        
+        .orb-3 {
+            width: 200px;
+            height: 200px;
+            background: var(--accent);
+            top: 50%;
+            left: 50%;
+            animation-delay: -10s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(20px, -30px) scale(1.05); }
+            50% { transform: translate(-20px, 20px) scale(0.95); }
+            75% { transform: translate(30px, 10px) scale(1.02); }
+        }
+        
+        /* Grid Pattern Overlay */
+        .grid-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 60px 60px;
+            z-index: -1;
+        }
+        
         .container {
-            max-width: 800px;
+            max-width: 900px;
+            margin: 0 auto;
             padding: 2rem;
+            position: relative;
+            z-index: 1;
         }
+        
+        /* Hero Section */
         .hero {
             text-align: center;
-            padding: 3rem 0;
+            padding: 4rem 0 3rem;
         }
+        
+        .logo-container {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+        
+        .logo {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            box-shadow: 
+                0 20px 60px rgba(139, 92, 246, 0.3),
+                0 0 0 1px rgba(255,255,255,0.1) inset;
+            animation: logoFloat 6s ease-in-out infinite;
+            position: relative;
+        }
+        
+        .logo::before {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 35px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            z-index: -1;
+            opacity: 0.5;
+            filter: blur(15px);
+            animation: pulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+        
         .hero h1 {
-            font-size: 3rem;
-            background: linear-gradient(135deg, #8B5CF6, #EC4899);
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff 0%, #c4b5fd 50%, #f0abfc 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 0.5rem;
+            background-clip: text;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.02em;
         }
-        .hero p {
-            color: #94a3b8;
-            font-size: 1.2rem;
+        
+        .hero .tagline {
+            color: var(--text-secondary);
+            font-size: 1.25rem;
+            font-weight: 400;
+            margin-bottom: 2rem;
         }
+        
+        /* Badges */
         .badges {
             display: flex;
             justify-content: center;
-            gap: 0.5rem;
+            gap: 0.75rem;
             flex-wrap: wrap;
-            margin: 1.5rem 0;
         }
+        
         .badge {
-            background: rgba(139, 92, 246, 0.2);
-            color: #c4b5fd;
-            padding: 0.4rem 1rem;
-            border-radius: 9999px;
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
             font-size: 0.85rem;
-            border: 1px solid rgba(139, 92, 246, 0.3);
+            font-weight: 500;
+            border: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
         }
+        
+        .badge:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(139, 92, 246, 0.2);
+        }
+        
+        .badge .icon {
+            margin-right: 0.4rem;
+        }
+        
+        /* Cards */
         .card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
             padding: 2rem;
             margin: 1.5rem 0;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(20px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
         }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.5), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .card:hover {
+            border-color: rgba(139, 92, 246, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.3),
+                0 0 60px rgba(139, 92, 246, 0.1);
+        }
+        
+        .card:hover::before {
+            opacity: 1;
+        }
+        
         .card h3 {
-            color: #f1f5f9;
-            margin-top: 0;
+            color: var(--text-primary);
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
         }
+        
+        .card h3 .emoji {
+            font-size: 1.5rem;
+        }
+        
+        .card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        /* Repo URL Box */
+        .repo-url-container {
+            position: relative;
+            margin: 1.5rem 0;
+        }
+        
         .repo-url {
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(139, 92, 246, 0.5);
-            border-radius: 0.5rem;
-            padding: 1rem;
-            font-family: monospace;
-            color: #c4b5fd;
-            word-break: break-all;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--accent);
+            font-size: 1rem;
             text-align: center;
-            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
         }
-        .btn-add {
-            display: inline-block;
-            background: linear-gradient(135deg, #8B5CF6, #7C3AED);
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 0.5rem;
+        
+        .repo-url:hover {
+            border-color: var(--accent);
+            background: rgba(6, 182, 212, 0.1);
+        }
+        
+        .repo-url .copy-icon {
+            opacity: 0.5;
+            transition: opacity 0.3s;
+        }
+        
+        .repo-url:hover .copy-icon {
+            opacity: 1;
+        }
+        
+        .copied-toast {
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: var(--bg-dark);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            opacity: 0;
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+        
+        .copied-toast.show {
+            opacity: 1;
+            top: -50px;
+        }
+        
+        /* Buttons */
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 1.75rem;
+            border-radius: 12px;
             text-decoration: none;
             font-weight: 600;
-            margin-top: 1rem;
-            transition: transform 0.2s, box-shadow 0.2s;
+            font-size: 0.95rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
         }
-        .btn-add:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 40px rgba(139, 92, 246, 0.3);
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), #a78bfa);
             color: white;
+            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
         }
-        .packages-list {
-            margin-top: 1rem;
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(139, 92, 246, 0.5);
         }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--secondary), #f472b6);
+            color: white;
+            box-shadow: 0 4px 20px rgba(236, 72, 153, 0.4);
+        }
+        
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(236, 72, 153, 0.5);
+        }
+        
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .btn:hover::after {
+            width: 300px;
+            height: 300px;
+        }
+        
+        /* Package List */
         .package-item {
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 0.5rem;
-            padding: 1rem;
-            margin: 0.5rem 0;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            margin: 0.75rem 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: all 0.3s ease;
         }
-        .package-name {
-            color: #f1f5f9;
+        
+        .package-item:hover {
+            border-color: var(--primary);
+            background: rgba(139, 92, 246, 0.05);
+        }
+        
+        .package-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .package-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        
+        .package-details h4 {
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+        
+        .package-details span {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+        
+        .package-version {
+            background: rgba(139, 92, 246, 0.2);
+            color: var(--primary);
+            padding: 0.4rem 1rem;
+            border-radius: 100px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        /* Table */
+        .table-container {
+            overflow-x: auto;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            margin-top: 1rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 1rem 1.25rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        th {
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        td {
+            color: var(--text-secondary);
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+        }
+        
+        .status-yes {
+            color: #10B981;
             font-weight: 600;
         }
-        .package-version {
-            color: #8B5CF6;
-            font-size: 0.9rem;
-        }
-        table {
-            background: transparent;
-        }
-        th, td {
-            border-color: rgba(255, 255, 255, 0.1);
-            color: #e2e8f0;
-        }
-        th {
-            background: rgba(139, 92, 246, 0.2);
-            color: #c4b5fd;
-        }
+        
+        /* Footer */
         footer {
             text-align: center;
-            color: #64748b;
-            padding: 2rem 0;
+            color: var(--text-secondary);
+            padding: 3rem 0 2rem;
             font-size: 0.9rem;
         }
+        
         footer a {
-            color: #8B5CF6;
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        footer a:hover {
+            color: var(--secondary);
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+        
+        .footer-links a {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero { animation: fadeInUp 0.8s ease-out; }
+        .card:nth-child(1) { animation: fadeInUp 0.8s ease-out 0.1s both; }
+        .card:nth-child(2) { animation: fadeInUp 0.8s ease-out 0.2s both; }
+        .card:nth-child(3) { animation: fadeInUp 0.8s ease-out 0.3s both; }
+        
+        /* Responsive */
+        @media (max-width: 640px) {
+            .hero h1 { font-size: 2.5rem; }
+            .logo { width: 100px; height: 100px; font-size: 2.5rem; }
+            .btn-group { flex-direction: column; }
+            .btn { width: 100%; justify-content: center; }
+            .package-item { flex-direction: column; gap: 1rem; text-align: center; }
+            .package-info { flex-direction: column; }
         }
     </style>
 </head>
 <body>
+    <div class="bg-gradient"></div>
+    <div class="grid-pattern"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    
     <main class="container">
         <div class="hero">
-            <h1>🌑 ShadowFlow</h1>
-            <p>Your awesome tweaks repository</p>
+            <div class="logo-container">
+                <div class="logo">🌑</div>
+            </div>
+            <h1>ShadowFlow</h1>
+            <p class="tagline">iOS Jailbreak Automation Toolchain</p>
             <div class="badges">
-                <span class="badge">✓ Rootful</span>
-                <span class="badge">✓ Rootless</span>
-                <span class="badge">✓ Roothide</span>
-                <span class="badge">✓ Sileo</span>
-                <span class="badge">✓ Zebra</span>
-                <span class="badge">✓ Cydia</span>
+                <span class="badge"><span class="icon">✓</span> Rootful</span>
+                <span class="badge"><span class="icon">✓</span> Rootless</span>
+                <span class="badge"><span class="icon">✓</span> Roothide</span>
+                <span class="badge"><span class="icon">📦</span> Sileo</span>
+                <span class="badge"><span class="icon">🦓</span> Zebra</span>
+                <span class="badge"><span class="icon">📱</span> Cydia</span>
             </div>
         </div>
 
         <div class="card">
-            <h3>📦 Add Repository</h3>
-            <p>Copy this URL and add it to your package manager:</p>
-            <div class="repo-url" id="repoUrl">https://tdzard94.github.io/ShadowFlowRepo/</div>
-            <div style="text-align: center;">
-                <a href="cydia://url/https://cydia.saurik.com/api/share#?source=https://tdzard94.github.io/ShadowFlowRepo/" class="btn-add">
-                    ➕ Add to Cydia
+            <h3><span class="emoji">📦</span> Add Repository</h3>
+            <p>Copy this URL and add it to your favorite package manager:</p>
+            <div class="repo-url-container">
+                <div class="copied-toast" id="copiedToast">✓ Copied!</div>
+                <div class="repo-url" id="repoUrl" onclick="copyUrl()">
+                    <span id="urlText">https://tdzard94.github.io/ShadowFlowRepo/</span>
+                    <svg class="copy-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                </div>
+            </div>
+            <div class="btn-group">
+                <a href="sileo://source/https://tdzard94.github.io/ShadowFlowRepo/" class="btn btn-primary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                    Add to Sileo
                 </a>
-                <a href="sileo://source/https://tdzard94.github.io/ShadowFlowRepo/" class="btn-add">
-                    ➕ Add to Sileo
+                <a href="cydia://url/https://cydia.saurik.com/api/share#?source=https://tdzard94.github.io/ShadowFlowRepo/" class="btn btn-secondary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                    Add to Cydia
                 </a>
             </div>
         </div>
 
         <div class="card">
-            <h3>📱 Available Packages</h3>
-            <div class="packages-list" id="packagesList">
-                <!-- Packages will be listed here -->
-                <p style="color: #94a3b8; text-align: center;">Add your .deb files to the <code>debs/</code> folder</p>
+            <h3><span class="emoji">📱</span> Available Packages</h3>
+            <div class="packages-list">
+                <div class="package-item">
+                    <div class="package-info">
+                        <div class="package-icon">🌑</div>
+                        <div class="package-details">
+                            <h4>ShadowFlow</h4>
+                            <span>Proxy management, device spoofing, VNC remote access</span>
+                        </div>
+                    </div>
+                    <div class="package-version">v2.0.0</div>
+                </div>
             </div>
         </div>
 
         <div class="card">
-            <h3>💡 Compatibility</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Jailbreak Type</th>
-                        <th>Architecture</th>
-                        <th>Supported</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Rootful (unc0ver, checkra1n)</td>
-                        <td>iphoneos-arm</td>
-                        <td>✅</td>
-                    </tr>
-                    <tr>
-                        <td>Rootless (Dopamine, palera1n)</td>
-                        <td>iphoneos-arm64</td>
-                        <td>✅</td>
-                    </tr>
-                    <tr>
-                        <td>Roothide</td>
-                        <td>iphoneos-arm64</td>
-                        <td>✅</td>
-                    </tr>
-                </tbody>
-            </table>
+            <h3><span class="emoji">⚡</span> Compatibility</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Jailbreak Type</th>
+                            <th>Architecture</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Rootful (unc0ver, checkra1n)</td>
+                            <td><code>iphoneos-arm</code></td>
+                            <td class="status-yes">✓ Supported</td>
+                        </tr>
+                        <tr>
+                            <td>Rootless (Dopamine, palera1n)</td>
+                            <td><code>iphoneos-arm64</code></td>
+                            <td class="status-yes">✓ Supported</td>
+                        </tr>
+                        <tr>
+                            <td>Roothide</td>
+                            <td><code>iphoneos-arm64e</code></td>
+                            <td class="status-yes">✓ Supported</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <footer>
-            Made with ❤️ for the jailbreak community<br>
-            <a href="https://github.com/YOUR_USERNAME/ShadowFlowRepo">GitHub</a>
+            <p>Made with ❤️ for the jailbreak community</p>
+            <div class="footer-links">
+                <a href="https://github.com/tdzard94/ShadowFlowRepo">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    GitHub
+                </a>
+            </div>
         </footer>
     </main>
 
     <script>
+        function copyUrl() {
+            const url = document.getElementById('urlText').textContent;
+            navigator.clipboard.writeText(url).then(() => {
+                const toast = document.getElementById('copiedToast');
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 2000);
+            });
+        }
+        
         // Auto-update repo URL based on current location
-        const repoUrl = document.getElementById('repoUrl');
         if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
             const url = window.location.origin + window.location.pathname.replace(/\/[^\/]*$/, '/');
-            repoUrl.textContent = url;
-            
-            // Update add buttons
-            document.querySelectorAll('.btn-add').forEach(btn => {
-                btn.href = btn.href.replace(/YOUR_USERNAME\.github\.io\/ShadowFlowRepo\//g, 
-                    window.location.host + window.location.pathname.replace(/\/[^\/]*$/, '/'));
-            });
+            document.getElementById('urlText').textContent = url;
         }
     </script>
 </body>

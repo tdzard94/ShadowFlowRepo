@@ -3,15 +3,23 @@ Version: 2.0.0
 Architecture: iphoneos-arm64e
 Maintainer: ShadowTech
 Installed-Size: 13800
-Depends: preferenceloader, zip (>= 2.2), unzip (>= 6.0), curl, ldid (>= 2.0), sqlite3 (>= 3.24)| firmware (<< 7.0)
+Depends: preferenceloader, firmware (>= 14.0), zip (>= 2.2), unzip (>= 6.0), ldid (>= 2.0), sqlite3, bash
 Filename: debs/com.shadowtech.shadowflow_2.0.0_iphoneos-arm64e.deb
-Size: 3184298
-MD5sum: a173acdcc8271880a598a96423ae79e2
-SHA1: 2db568f9130a954369ea124a74f59f8cbf5dd8fa
-SHA256: 42729b278b101bf2a6cb01ec9fc5d0e2f437a4d80c42efc29cc3c34c9dce8383
+Size: 3184504
+MD5sum: df35f2443ab154a337da7618af9c6434
+SHA1: 917c0ba8aba7292c1653d21f63b0d7466c6c69d3
+SHA256: 08bb10a81d717f728644d11368f542ecdb6f75f8252a2cc2fc7a616aafd32cc5
 Section: System
 Description: iOS Jailbreak Automation Toolchain - proxy management, device spoofing, VNC remote access
 Tag: role::hacker
 Author: ShadowTech
+Depiction: https://shadowflow-repo.zios.tools/depictions/web/?p=com.shadowtech.shadowflow
 Name: ShadowFlow
+Sileodepiction: https://shadowflow-repo.zios.tools/depictions/native/com.shadowtech.shadowflow/depiction.json
 
+Depiction: https://tdzard94.github.io/ShadowFlowRepo/depictions/web/com.shadowtech.shadowflow.html
+SileoDepiction: https://tdzard94.github.io/ShadowFlowRepo/depictions/native/com.shadowtech.shadowflow/depiction.json
+
+dpkg-scanpackages: warning: Packages in archive but missing from override file:
+dpkg-scanpackages: warning:   com.shadowtech.shadowflow
+dpkg-scanpackages: info: Wrote 1 entries to output Packages file.

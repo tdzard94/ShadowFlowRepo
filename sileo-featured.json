@@ -1,0 +1,15 @@
+{
+    "success": true,
+    "page": "https://tdzard94.github.io/ShadowFlowRepo/",
+    "version": "2.0.0",
+    "packages": [
+        {
+            "identifier": "com.shadowtech.shadowflow",
+            "name": "ShadowFlow",
+            "version": "2.0.0",
+            "description": "iOS Jailbreak Automation Toolchain",
+            "depiction": "https://tdzard94.github.io/ShadowFlowRepo/depictions/web/com.shadowtech.shadowflow.html",
+            "nativeDepiction": "https://tdzard94.github.io/ShadowFlowRepo/depictions/native/com.shadowtech.shadowflow/depiction.json"
+        }
+    ]
+}
