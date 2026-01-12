@@ -2,13 +2,13 @@ Package: com.shadowtech.shadowflow
 Version: 2.0.0
 Architecture: iphoneos-arm64e
 Maintainer: ShadowTech
-Installed-Size: 13800
+Installed-Size: 12228
 Depends: preferenceloader, firmware (>= 14.0), zip (>= 2.2), unzip (>= 6.0), ldid (>= 2.0), sqlite3, bash
 Filename: debs/com.shadowtech.shadowflow_2.0.0_iphoneos-arm64e.deb
-Size: 3184504
-MD5sum: df35f2443ab154a337da7618af9c6434
-SHA1: 917c0ba8aba7292c1653d21f63b0d7466c6c69d3
-SHA256: 08bb10a81d717f728644d11368f542ecdb6f75f8252a2cc2fc7a616aafd32cc5
+Size: 3196976
+MD5sum: 6879c6d3d702893134fb3a7f5ed708e7
+SHA1: c23908738fbe6a5db1dc7d7a6793c9ab3c58b800
+SHA256: bff347232d31f513819744e6e0985b5be6d6a36644aee1951c7cd932a41eba05
 Section: System
 Description: iOS Jailbreak Automation Toolchain - proxy management, device spoofing, VNC remote access
 Tag: role::hacker
