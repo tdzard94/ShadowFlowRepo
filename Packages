@@ -16,11 +16,8 @@ Section: System
 Description: iOS Jailbreak Automation Toolchain - proxy management, device spoofing, VNC remote access
 Tag: role::hacker
 Author: ShadowTech
-Depiction: https://shadowflow-repo.zios.tools/depictions/web/?p=com.shadowtech.shadowflow.roothide
-Name: ShadowFlow
-Sileodepiction: https://shadowflow-repo.zios.tools/depictions/native/com.shadowtech.shadowflow.roothide/depiction.json
-
 Depiction: https://shadowflow-repo.zios.tools/depictions/web/com.shadowtech.shadowflow.roothide.html
+Name: ShadowFlow
 SileoDepiction: https://shadowflow-repo.zios.tools/depictions/native/com.shadowtech.shadowflow.roothide/depiction.json
 
 Package: com.shadowtech.shadowflow.rootless
@@ -41,13 +38,7 @@ Section: System
 Description: iOS Jailbreak Automation Toolchain - proxy management, device spoofing, VNC remote access
 Tag: role::hacker
 Author: ShadowTech
-Depiction: https://shadowflow-repo.zios.tools/depictions/web/?p=com.shadowtech.shadowflow.rootless
-Name: ShadowFlow
-Sileodepiction: https://shadowflow-repo.zios.tools/depictions/native/com.shadowtech.shadowflow.rootless/depiction.json
-
 Depiction: https://shadowflow-repo.zios.tools/depictions/web/com.shadowtech.shadowflow.rootless.html
+Name: ShadowFlow
 SileoDepiction: https://shadowflow-repo.zios.tools/depictions/native/com.shadowtech.shadowflow.rootless/depiction.json
 
-dpkg-scanpackages: warning: Packages in archive but missing from override file:
-dpkg-scanpackages: warning:   com.shadowtech.shadowflow.roothide com.shadowtech.shadowflow.rootless
-dpkg-scanpackages: info: Wrote 2 entries to output Packages file.

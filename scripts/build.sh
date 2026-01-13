@@ -59,32 +59,62 @@ echo ""
 
 # Generate Packages file
 echo -e "${YELLOW}🔧 Generating Packages file...${NC}"
-dpkg-scanpackages debs /dev/null > Packages.tmp 2>&1 || {
+dpkg-scanpackages debs /dev/null 2>/dev/null > Packages.tmp || {
     echo -e "${RED}❌ Failed to generate Packages file${NC}"
     exit 1
 }
 
-# Add depiction URLs to Packages
-echo -e "${YELLOW}🔗 Adding depiction URLs...${NC}"
-while IFS= read -r line; do
-    echo "$line"
-    # After Package line, check if we have depiction for it
-    if [[ "$line" =~ ^Package:\ (.+)$ ]]; then
-        PKG_ID="${BASH_REMATCH[1]}"
-    fi
-    # Add depictions after the last field before empty line
-    if [[ -z "$line" && -n "$PKG_ID" ]]; then
-        # Check if depiction exists
-        if [ -f "depictions/web/${PKG_ID}.html" ]; then
-            echo "Depiction: ${REPO_URL}/depictions/web/${PKG_ID}.html"
+# Process Packages - update depiction URLs if depiction files exist
+echo -e "${YELLOW}🔗 Processing depiction URLs...${NC}"
+{
+    PKG_ID=""
+    HAS_DEPICTION=false
+    HAS_SILEO=false
+    BUFFER=""
+    
+    while IFS= read -r line || [[ -n "$line" ]]; do
+        # Capture Package ID
+        if [[ "$line" =~ ^Package:\ (.+)$ ]]; then
+            PKG_ID="${BASH_REMATCH[1]}"
+            HAS_DEPICTION=false
+            HAS_SILEO=false
+            BUFFER=""
         fi
-        if [ -f "depictions/native/${PKG_ID}/depiction.json" ]; then
-            echo "SileoDepiction: ${REPO_URL}/depictions/native/${PKG_ID}/depiction.json"
+        
+        # Check if Depiction already exists
+        if [[ "$line" =~ ^Depiction: ]]; then
+            HAS_DEPICTION=true
+            # Replace with correct URL if depiction file exists
+            if [ -f "depictions/web/${PKG_ID}.html" ]; then
+                echo "Depiction: ${REPO_URL}/depictions/web/${PKG_ID}.html"
+                continue
+            fi
         fi
-        echo ""
-        PKG_ID=""
-    fi
-done < Packages.tmp > Packages
+        
+        # Check if SileoDepiction already exists (case insensitive)
+        if [[ "$line" =~ ^[Ss]ileodepiction: ]]; then
+            HAS_SILEO=true
+            # Replace with correct URL if depiction file exists
+            if [ -f "depictions/native/${PKG_ID}/depiction.json" ]; then
+                echo "SileoDepiction: ${REPO_URL}/depictions/native/${PKG_ID}/depiction.json"
+                continue
+            fi
+        fi
+        
+        # On empty line (end of package entry), add missing depictions
+        if [[ -z "$line" && -n "$PKG_ID" ]]; then
+            if [[ "$HAS_DEPICTION" == false ]] && [ -f "depictions/web/${PKG_ID}.html" ]; then
+                echo "Depiction: ${REPO_URL}/depictions/web/${PKG_ID}.html"
+            fi
+            if [[ "$HAS_SILEO" == false ]] && [ -f "depictions/native/${PKG_ID}/depiction.json" ]; then
+                echo "SileoDepiction: ${REPO_URL}/depictions/native/${PKG_ID}/depiction.json"
+            fi
+            PKG_ID=""
+        fi
+        
+        echo "$line"
+    done
+} < Packages.tmp > Packages
 
 # Remove temp file
 rm -f Packages.tmp
