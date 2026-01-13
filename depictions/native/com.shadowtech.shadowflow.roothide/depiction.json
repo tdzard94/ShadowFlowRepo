@@ -1,0 +1,124 @@
+{
+    "minVersion": "0.1",
+    "headerImage": "",
+    "tintColor": "#8B5CF6",
+    "tabs": [
+        {
+            "tabname": "Details",
+            "views": [
+                {
+                    "class": "DepictionMarkdownView",
+                    "markdown": "# ShadowFlow (Roothide)\n\nA powerful iOS Jailbreak Automation Toolchain for **Roothide** jailbreaks.",
+                    "useSpacing": true
+                },
+                {
+                    "class": "DepictionSeparatorView"
+                },
+                {
+                    "class": "DepictionHeaderView",
+                    "title": "Features",
+                    "useBottomMargin": false
+                },
+                {
+                    "class": "DepictionMarkdownView",
+                    "markdown": "• **Proxy Management** - Advanced proxy configuration and routing\n• **Device Spoofing** - Comprehensive device identity management\n• **VNC Remote Access** - Full remote control capabilities\n• **Automation Tools** - Powerful scripting and automation",
+                    "useSpacing": true
+                },
+                {
+                    "class": "DepictionSeparatorView"
+                },
+                {
+                    "class": "DepictionHeaderView",
+                    "title": "Information",
+                    "useBottomMargin": false
+                },
+                {
+                    "class": "DepictionTableTextView",
+                    "title": "Developer",
+                    "text": "ShadowTech"
+                },
+                {
+                    "class": "DepictionTableTextView",
+                    "title": "Version",
+                    "text": "2.0.0"
+                },
+                {
+                    "class": "DepictionTableTextView",
+                    "title": "Compatibility",
+                    "text": "iOS 14.0+"
+                },
+                {
+                    "class": "DepictionTableTextView",
+                    "title": "Architecture",
+                    "text": "arm64e (Roothide)"
+                },
+                {
+                    "class": "DepictionTableTextView",
+                    "title": "Section",
+                    "text": "System"
+                },
+                {
+                    "class": "DepictionSeparatorView"
+                },
+                {
+                    "class": "DepictionHeaderView",
+                    "title": "Links",
+                    "useBottomMargin": false
+                },
+                {
+                    "class": "DepictionTableButtonView",
+                    "title": "GitHub Repository",
+                    "action": "https://github.com/tdzard94/ShadowFlowRepo",
+                    "openExternal": true
+                },
+                {
+                    "class": "DepictionTableButtonView",
+                    "title": "Report Issues",
+                    "action": "https://github.com/tdzard94/ShadowFlowRepo/issues",
+                    "openExternal": true
+                },
+                {
+                    "class": "DepictionSpacerView",
+                    "spacing": 16
+                }
+            ],
+            "class": "DepictionStackView"
+        },
+        {
+            "tabname": "Changelog",
+            "views": [
+                {
+                    "class": "DepictionHeaderView",
+                    "title": "Version 2.0.0",
+                    "useBottomMargin": false
+                },
+                {
+                    "class": "DepictionMarkdownView",
+                    "markdown": "**Released:** January 13, 2026\n\n• Complete rewrite with improved performance\n• Added VNC remote access support\n• Enhanced proxy management system\n• Improved device spoofing capabilities\n• Better compatibility with iOS 14-17\n• Roothide jailbreak support\n• Fixed various bugs and stability issues",
+                    "useSpacing": true
+                },
+                {
+                    "class": "DepictionSpacerView",
+                    "spacing": 16
+                }
+            ],
+            "class": "DepictionStackView"
+        },
+        {
+            "tabname": "Screenshots",
+            "views": [
+                {
+                    "class": "DepictionMarkdownView",
+                    "markdown": "Screenshots coming soon...",
+                    "useSpacing": true
+                },
+                {
+                    "class": "DepictionSpacerView",
+                    "spacing": 16
+                }
+            ],
+            "class": "DepictionStackView"
+        }
+    ],
+    "class": "DepictionTabView"
+}

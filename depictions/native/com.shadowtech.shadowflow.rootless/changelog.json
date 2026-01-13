@@ -1,0 +1,5 @@
+{
+    "minVersion": "0.1",
+    "class": "DepictionMarkdownView",
+    "markdown": "## ShadowFlow (Rootless) v2.0.0\n\n**Released:** January 13, 2026\n\n### Changes\n• Complete rewrite with improved performance\n• Added VNC remote access support\n• Enhanced proxy management system\n• Improved device spoofing capabilities\n• Better compatibility with iOS 14-17\n• Rootless jailbreak support (Dopamine, palera1n)\n• Fixed various bugs and stability issues"
+}

@@ -1,25 +1,53 @@
-Package: com.shadowtech.shadowflow
+Package: com.shadowtech.shadowflow.roothide
 Version: 2.0.0
 Architecture: iphoneos-arm64e
 Maintainer: ShadowTech
-Installed-Size: 12228
+Installed-Size: 13720
 Depends: preferenceloader, firmware (>= 14.0), zip (>= 2.2), unzip (>= 6.0), ldid (>= 2.0), sqlite3, bash
-Filename: debs/com.shadowtech.shadowflow_2.0.0_iphoneos-arm64e.deb
-Size: 3196976
-MD5sum: 6879c6d3d702893134fb3a7f5ed708e7
-SHA1: c23908738fbe6a5db1dc7d7a6793c9ab3c58b800
-SHA256: bff347232d31f513819744e6e0985b5be6d6a36644aee1951c7cd932a41eba05
+Conflicts: com.shadowtech.shadowflow, com.shadowtech.shadowflow.roothide, com.shadowtech.shadowflow.rootless, com.shadowtech.shadowflow.rootful
+Replaces: com.shadowtech.shadowflow, com.shadowtech.shadowflow.roothide, com.shadowtech.shadowflow.rootless, com.shadowtech.shadowflow.rootful
+Provides: com.shadowtech.shadowflow
+Filename: debs/com.shadowtech.shadowflow.roothide_2.0.0_iphoneos-arm64e.deb
+Size: 3173070
+MD5sum: 8b07a6c1fdc1018ba99cba46f4fb3da2
+SHA1: fd6007ac1986b0b0337c0db75d34a1b8415092eb
+SHA256: 401af6b2da9a0afaf57c5a7bb2273e98784b6693e80b90b6596ebec6c99e01de
 Section: System
 Description: iOS Jailbreak Automation Toolchain - proxy management, device spoofing, VNC remote access
 Tag: role::hacker
 Author: ShadowTech
-Depiction: https://shadowflow-repo.zios.tools/depictions/web/?p=com.shadowtech.shadowflow
+Depiction: https://shadowflow-repo.zios.tools/depictions/web/?p=com.shadowtech.shadowflow.roothide
 Name: ShadowFlow
-Sileodepiction: https://shadowflow-repo.zios.tools/depictions/native/com.shadowtech.shadowflow/depiction.json
+Sileodepiction: https://shadowflow-repo.zios.tools/depictions/native/com.shadowtech.shadowflow.roothide/depiction.json
 
-Depiction: https://shadowflow-repo.zios.tools/depictions/web/com.shadowtech.shadowflow.html
-SileoDepiction: https://shadowflow-repo.zios.tools/depictions/native/com.shadowtech.shadowflow/depiction.json
+Depiction: https://shadowflow-repo.zios.tools/depictions/web/com.shadowtech.shadowflow.roothide.html
+SileoDepiction: https://shadowflow-repo.zios.tools/depictions/native/com.shadowtech.shadowflow.roothide/depiction.json
+
+Package: com.shadowtech.shadowflow.rootless
+Version: 2.0.0
+Architecture: iphoneos-arm64
+Maintainer: ShadowTech
+Installed-Size: 13772
+Depends: preferenceloader, firmware (>= 14.0), zip (>= 2.2), unzip (>= 6.0), ldid (>= 2.0), sqlite3, bash
+Conflicts: com.shadowtech.shadowflow, com.shadowtech.shadowflow.roothide, com.shadowtech.shadowflow.rootless, com.shadowtech.shadowflow.rootful
+Replaces: com.shadowtech.shadowflow, com.shadowtech.shadowflow.roothide, com.shadowtech.shadowflow.rootless, com.shadowtech.shadowflow.rootful
+Provides: com.shadowtech.shadowflow
+Filename: debs/com.shadowtech.shadowflow.rootless_2.0.0_iphoneos-arm64.deb
+Size: 3183322
+MD5sum: 34f8026999b231d0ad083e5d1408505a
+SHA1: 82eb924c8b090060026e998c8324b87566beb691
+SHA256: bbe863c4d57cc4ad9d1989954df4ce97831c992525e989483357797d1a848d60
+Section: System
+Description: iOS Jailbreak Automation Toolchain - proxy management, device spoofing, VNC remote access
+Tag: role::hacker
+Author: ShadowTech
+Depiction: https://shadowflow-repo.zios.tools/depictions/web/?p=com.shadowtech.shadowflow.rootless
+Name: ShadowFlow
+Sileodepiction: https://shadowflow-repo.zios.tools/depictions/native/com.shadowtech.shadowflow.rootless/depiction.json
+
+Depiction: https://shadowflow-repo.zios.tools/depictions/web/com.shadowtech.shadowflow.rootless.html
+SileoDepiction: https://shadowflow-repo.zios.tools/depictions/native/com.shadowtech.shadowflow.rootless/depiction.json
 
 dpkg-scanpackages: warning: Packages in archive but missing from override file:
-dpkg-scanpackages: warning:   com.shadowtech.shadowflow
-dpkg-scanpackages: info: Wrote 1 entries to output Packages file.
+dpkg-scanpackages: warning:   com.shadowtech.shadowflow.roothide com.shadowtech.shadowflow.rootless
+dpkg-scanpackages: info: Wrote 2 entries to output Packages file.
