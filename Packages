@@ -24,16 +24,16 @@ Package: com.shadowtech.shadowflow.roothide
 Version: 2.0.0
 Architecture: iphoneos-arm64e
 Maintainer: ShadowTech
-Installed-Size: 14136
+Installed-Size: 14152
 Depends: preferenceloader, firmware (>= 14.0), zip (>= 2.2), unzip (>= 6.0), ldid (>= 2.0), sqlite3, bash
 Conflicts: com.shadowtech.shadowflow, com.shadowtech.shadowflow.roothide, com.shadowtech.shadowflow.rootless, com.shadowtech.shadowflow.rootful
 Replaces: com.shadowtech.shadowflow, com.shadowtech.shadowflow.roothide, com.shadowtech.shadowflow.rootless, com.shadowtech.shadowflow.rootful
 Provides: com.shadowtech.shadowflow
 Filename: debs/com.shadowtech.shadowflow.roothide_2.0.0_iphoneos-arm64e.deb
-Size: 3271624
-MD5sum: 511f5d4d39cbd2e652883ae0981ef7d5
-SHA1: 35059e654b2c38143fb781a0710c4d44d25e9835
-SHA256: 042e1b834f3f9af3963ca3f3d08289c91f5ea27469be7a817ea27dc085d1f436
+Size: 3275436
+MD5sum: f2bfae7389bf33cf318729cd32210efd
+SHA1: 08adffef8e7512068e52c5bb3e0e5fe9a369d7df
+SHA256: 5b92a9ae9965a254edf2f42b2c58cd51d55137b2e902c75b4de1a3217dabd55b
 Section: System
 Description: iOS Jailbreak Automation Toolchain - proxy management, device spoofing, VNC remote access
 Tag: role::hacker
@@ -46,16 +46,16 @@ Package: com.shadowtech.shadowflow.rootless
 Version: 2.0.0
 Architecture: iphoneos-arm64
 Maintainer: ShadowTech
-Installed-Size: 14172
+Installed-Size: 14152
 Depends: preferenceloader, firmware (>= 14.0), zip (>= 2.2), unzip (>= 6.0), ldid (>= 2.0), sqlite3, bash
 Conflicts: com.shadowtech.shadowflow, com.shadowtech.shadowflow.roothide, com.shadowtech.shadowflow.rootless, com.shadowtech.shadowflow.rootful
 Replaces: com.shadowtech.shadowflow, com.shadowtech.shadowflow.roothide, com.shadowtech.shadowflow.rootless, com.shadowtech.shadowflow.rootful
 Provides: com.shadowtech.shadowflow
 Filename: debs/com.shadowtech.shadowflow.rootless_2.0.0_iphoneos-arm64.deb
-Size: 3279650
-MD5sum: ee9780679d4a608463d582e46f203c10
-SHA1: 74620b014162e493d6e042c39ee969962f18351e
-SHA256: fb49010f0106c67132d6965ea5ad22d044c6fbcd94b3e5d46eea415b9b12d35d
+Size: 3281336
+MD5sum: dbebbb58481a6c416d1c8e33f9adc271
+SHA1: a48fad88de648dda53b6c173e0bc8a4d475d8452
+SHA256: dbed65d360651ac69ab155bbf7e7f2320626cd2496b6eb4af6db77dfab55af7b
 Section: System
 Description: iOS Jailbreak Automation Toolchain - proxy management, device spoofing, VNC remote access
 Tag: role::hacker
