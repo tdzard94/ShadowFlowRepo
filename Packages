@@ -43,21 +43,21 @@ Name: ShadowFlow
 SileoDepiction: https://shadowflow-repo.zios.tools/depictions/native/com.shadowtech.shadowflow.roothide/depiction.json
 
 Package: com.shadowtech.shadowflow.rootless
-Version: 2.0.0
+Version: 2.0.1-9-31+debug
 Architecture: iphoneos-arm64
 Maintainer: ShadowTech
-Installed-Size: 14348
+Installed-Size: 11116
 Depends: preferenceloader, firmware (>= 14.0), zip (>= 2.2), unzip (>= 6.0), ldid (>= 2.0), sqlite3, bash
 Conflicts: com.shadowtech.shadowflow, com.shadowtech.shadowflow.roothide, com.shadowtech.shadowflow.rootless, com.shadowtech.shadowflow.rootful
 Replaces: com.shadowtech.shadowflow, com.shadowtech.shadowflow.roothide, com.shadowtech.shadowflow.rootless, com.shadowtech.shadowflow.rootful
 Provides: com.shadowtech.shadowflow
-Filename: debs/com.shadowtech.shadowflow.rootless_2.0.0_iphoneos-arm64.deb
-Size: 3321476
-MD5sum: 79c54287d09f6d0598b6305e0f55a824
-SHA1: 55ad95d514d9fce4f2740dfde700b51ac98fe859
-SHA256: cbdd0dfc19751319d0ed05d4bde3cab5d7fc471ada1464fd8ca09337bf183629
+Filename: debs/com.shadowtech.shadowflow.rootless_2.0.1-9-31+debug_iphoneos-arm64.deb
+Size: 2600394
+MD5sum: 108c6d71553ea0812a4f2e0c3d104542
+SHA1: 985ecfaf78f9e5fcd42383815a587bd9ad8d9f92
+SHA256: 0fa1653f1e8005adfc0455ce3718ad16717451678b55ff1289c3aea2b3abeda1
 Section: System
-Description: iOS Jailbreak Automation Toolchain - proxy management, device spoofing, VNC remote access
+Description: iOS Jailbreak Automation Toolchain - proxy management and app automation
 Tag: role::hacker
 Author: ShadowTech
 Depiction: https://shadowflow-repo.zios.tools/depictions/web/com.shadowtech.shadowflow.rootless.html
