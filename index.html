@@ -6,647 +6,415 @@
     <title>ShadowFlow Repo</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         :root {
-            --primary: #8B5CF6;
-            --primary-glow: rgba(139, 92, 246, 0.4);
-            --secondary: #EC4899;
-            --accent: #06B6D4;
-            --bg-dark: #0a0a0f;
-            --bg-card: rgba(255, 255, 255, 0.03);
-            --text-primary: #f1f5f9;
-            --text-secondary: #94a3b8;
-            --border: rgba(255, 255, 255, 0.08);
+            --bg: #0a0a0b;
+            --surface: #131316;
+            --surface-2: #0e0e11;
+            --border: #26262c;
+            --text: #e8e8ea;
+            --muted: #8a8a93;
+            --accent: #4ade80;
+            --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
         }
-        
+
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg-dark);
+            background: var(--bg);
+            color: var(--text);
             min-height: 100vh;
-            color: var(--text-primary);
-            overflow-x: hidden;
         }
-        
-        /* Animated Background */
-        .bg-gradient {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: -1;
-            overflow: hidden;
-        }
-        
-        .bg-gradient::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: 
-                radial-gradient(ellipse at 20% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 80%, rgba(236, 72, 153, 0.1) 0%, transparent 50%),
-                radial-gradient(ellipse at 40% 60%, rgba(6, 182, 212, 0.08) 0%, transparent 40%);
-            animation: bgMove 20s ease-in-out infinite;
-        }
-        
-        @keyframes bgMove {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            33% { transform: translate(2%, 2%) rotate(1deg); }
-            66% { transform: translate(-1%, 1%) rotate(-1deg); }
-        }
-        
-        /* Floating Orbs */
-        .orb {
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.5;
-            animation: float 15s ease-in-out infinite;
-            pointer-events: none;
-        }
-        
-        .orb-1 {
-            width: 400px;
-            height: 400px;
-            background: var(--primary);
-            top: -100px;
-            right: -100px;
-            animation-delay: 0s;
-        }
-        
-        .orb-2 {
-            width: 300px;
-            height: 300px;
-            background: var(--secondary);
-            bottom: -50px;
-            left: -50px;
-            animation-delay: -5s;
-        }
-        
-        .orb-3 {
-            width: 200px;
-            height: 200px;
-            background: var(--accent);
-            top: 50%;
-            left: 50%;
-            animation-delay: -10s;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            25% { transform: translate(20px, -30px) scale(1.05); }
-            50% { transform: translate(-20px, 20px) scale(0.95); }
-            75% { transform: translate(30px, 10px) scale(1.02); }
-        }
-        
-        /* Grid Pattern Overlay */
-        .grid-pattern {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: 
-                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-            background-size: 60px 60px;
-            z-index: -1;
-        }
-        
+
         .container {
-            max-width: 900px;
+            max-width: 680px;
             margin: 0 auto;
-            padding: 2rem;
-            position: relative;
-            z-index: 1;
+            padding: 56px 20px 32px;
         }
-        
-        /* Hero Section */
+
+        /* Hero */
         .hero {
-            text-align: center;
-            padding: 4rem 0 3rem;
+            margin-bottom: 32px;
         }
-        
-        .logo-container {
-            position: relative;
-            display: inline-block;
-            margin-bottom: 1.5rem;
-        }
-        
+
         .logo {
-            width: 120px;
-            height: 120px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 32px;
+            width: 56px;
+            height: 56px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 2px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3.5rem;
-            box-shadow: 
-                0 20px 60px rgba(139, 92, 246, 0.3),
-                0 0 0 1px rgba(255,255,255,0.1) inset;
-            animation: logoFloat 6s ease-in-out infinite;
-            position: relative;
+            font-size: 1.75rem;
+            margin-bottom: 20px;
         }
-        
-        .logo::before {
-            content: '';
-            position: absolute;
-            inset: -3px;
-            border-radius: 35px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
-            z-index: -1;
-            opacity: 0.5;
-            filter: blur(15px);
-            animation: pulse 3s ease-in-out infinite;
+
+        h1 {
+            font-family: var(--mono);
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
         }
-        
-        @keyframes logoFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+
+        .tagline {
+            color: var(--muted);
+            margin-top: 6px;
+            font-size: 1rem;
         }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 0.5; transform: scale(1); }
-            50% { opacity: 0.8; transform: scale(1.05); }
-        }
-        
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #fff 0%, #c4b5fd 50%, #f0abfc 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 0.75rem;
-            letter-spacing: -0.02em;
-        }
-        
-        .hero .tagline {
-            color: var(--text-secondary);
-            font-size: 1.25rem;
-            font-weight: 400;
-            margin-bottom: 2rem;
-        }
-        
-        /* Badges */
+
         .badges {
             display: flex;
-            justify-content: center;
-            gap: 0.75rem;
             flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 18px;
         }
-        
+
         .badge {
-            background: var(--bg-card);
-            color: var(--text-secondary);
-            padding: 0.5rem 1rem;
-            border-radius: 100px;
-            font-size: 0.85rem;
-            font-weight: 500;
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--muted);
             border: 1px solid var(--border);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
+            background: var(--surface-2);
+            padding: 4px 10px;
+            border-radius: 2px;
         }
-        
-        .badge:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(139, 92, 246, 0.2);
-        }
-        
-        .badge .icon {
-            margin-right: 0.4rem;
-        }
-        
+
         /* Cards */
         .card {
-            background: var(--bg-card);
+            background: var(--surface);
             border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 2rem;
-            margin: 1.5rem 0;
-            backdrop-filter: blur(20px);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
+            border-radius: 2px;
+            padding: 24px;
+            margin-bottom: 16px;
         }
-        
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.5), transparent);
-            opacity: 0;
-            transition: opacity 0.4s ease;
+
+        .card h2 {
+            font-family: var(--mono);
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--muted);
+            margin-bottom: 14px;
         }
-        
-        .card:hover {
-            border-color: rgba(139, 92, 246, 0.3);
-            transform: translateY(-4px);
-            box-shadow: 
-                0 20px 40px rgba(0, 0, 0, 0.3),
-                0 0 60px rgba(139, 92, 246, 0.1);
+
+        .card h2::before {
+            content: "$ ";
+            color: var(--accent);
         }
-        
-        .card:hover::before {
-            opacity: 1;
-        }
-        
-        .card h3 {
-            color: var(--text-primary);
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-        
-        .card h3 .emoji {
-            font-size: 1.5rem;
-        }
-        
+
         .card p {
-            color: var(--text-secondary);
-            line-height: 1.6;
+            color: var(--muted);
+            font-size: 0.9rem;
+            margin-bottom: 14px;
         }
-        
-        /* Repo URL Box */
+
+        /* Repo URL */
         .repo-url-container {
             position: relative;
-            margin: 1.5rem 0;
+            margin-bottom: 14px;
         }
-        
+
         .repo-url {
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 1.25rem 1.5rem;
-            font-family: 'JetBrains Mono', monospace;
-            color: var(--accent);
-            font-size: 1rem;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 0.75rem;
+            justify-content: space-between;
+            gap: 12px;
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: 2px;
+            padding: 12px 14px;
+            cursor: pointer;
         }
-        
+
         .repo-url:hover {
-            border-color: var(--accent);
-            background: rgba(6, 182, 212, 0.1);
+            border-color: #3a3a42;
         }
-        
-        .repo-url .copy-icon {
-            opacity: 0.5;
-            transition: opacity 0.3s;
+
+        .repo-url span {
+            font-family: var(--mono);
+            font-size: 0.85rem;
+            word-break: break-all;
         }
-        
-        .repo-url:hover .copy-icon {
-            opacity: 1;
+
+        .repo-url svg {
+            flex-shrink: 0;
+            color: var(--muted);
         }
-        
+
         .copied-toast {
             position: absolute;
-            top: -40px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--accent);
-            color: var(--bg-dark);
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            font-weight: 600;
+            top: -10px;
+            right: 8px;
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            color: var(--accent);
+            background: var(--bg);
+            padding: 2px 6px;
+            border-radius: 2px;
             opacity: 0;
-            transition: all 0.3s ease;
-            pointer-events: none;
+            transition: opacity 0.15s;
         }
-        
+
         .copied-toast.show {
             opacity: 1;
-            top: -50px;
         }
-        
+
         /* Buttons */
         .btn-group {
             display: flex;
-            justify-content: center;
-            gap: 1rem;
+            gap: 10px;
             flex-wrap: wrap;
-            margin-top: 1.5rem;
         }
-        
+
         .btn {
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--text);
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 2px;
+            padding: 10px 16px;
+            text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            padding: 1rem 1.75rem;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
+            gap: 8px;
+            transition: border-color 0.15s, color 0.15s;
         }
-        
+
+        .btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .btn svg {
+            flex-shrink: 0;
+        }
+
         .btn-primary {
-            background: linear-gradient(135deg, var(--primary), #a78bfa);
-            color: white;
-            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #0a0a0b;
+            font-weight: 500;
         }
-        
+
         .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(139, 92, 246, 0.5);
+            background: #6ee7a0;
+            border-color: #6ee7a0;
+            color: #0a0a0b;
         }
-        
-        .btn-secondary {
-            background: linear-gradient(135deg, var(--secondary), #f472b6);
-            color: white;
-            box-shadow: 0 4px 20px rgba(236, 72, 153, 0.4);
-        }
-        
-        .btn-secondary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(236, 72, 153, 0.5);
-        }
-        
-        .btn::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-        
-        .btn:hover::after {
-            width: 300px;
-            height: 300px;
-        }
-        
-        /* Package List */
+
+        /* Packages */
         .package-item {
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 1.25rem 1.5rem;
-            margin: 0.75rem 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.3s ease;
-        }
-        
-        .package-item:hover {
-            border-color: var(--primary);
-            background: rgba(139, 92, 246, 0.05);
-        }
-        
-        .package-info {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 14px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
         }
-        
+
+        .package-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
         .package-icon {
-            width: 48px;
-            height: 48px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 12px;
+            width: 40px;
+            height: 40px;
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: 2px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: 1.1rem;
+            flex-shrink: 0;
         }
-        
+
+        .package-details {
+            flex: 1;
+            min-width: 0;
+        }
+
         .package-details h4 {
-            color: var(--text-primary);
-            font-weight: 600;
-            font-size: 1rem;
-            margin-bottom: 0.25rem;
-        }
-        
-        .package-details span {
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-        }
-        
-        .package-version {
-            background: rgba(139, 92, 246, 0.2);
-            color: var(--primary);
-            padding: 0.4rem 1rem;
-            border-radius: 100px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
+            font-family: var(--mono);
+            font-size: 0.95rem;
             font-weight: 500;
         }
-        
+
+        .package-details span {
+            color: var(--muted);
+            font-size: 0.82rem;
+            display: block;
+            margin-top: 2px;
+        }
+
+        .package-version {
+            font-family: var(--mono);
+            color: var(--accent);
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+
         /* Table */
         .table-container {
             overflow-x: auto;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            margin-top: 1rem;
         }
-        
+
         table {
             width: 100%;
             border-collapse: collapse;
+            font-size: 0.875rem;
         }
-        
-        th, td {
-            padding: 1rem 1.25rem;
+
+        thead th {
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--muted);
             text-align: left;
+            padding: 8px 12px 8px 0;
+            border-bottom: 1px solid var(--border);
+            font-weight: 500;
+        }
+
+        tbody td {
+            padding: 10px 12px 10px 0;
             border-bottom: 1px solid var(--border);
         }
-        
-        th {
-            background: rgba(139, 92, 246, 0.1);
-            color: var(--primary);
-            font-weight: 600;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        
-        td {
-            color: var(--text-secondary);
-        }
-        
-        tr:last-child td {
+
+        tbody tr:last-child td {
             border-bottom: none;
         }
-        
-        tr:hover td {
-            background: rgba(255, 255, 255, 0.02);
+
+        td code {
+            font-family: var(--mono);
+            font-size: 0.8rem;
+            color: var(--text);
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            padding: 2px 6px;
+            border-radius: 2px;
         }
-        
+
         .status-yes {
-            color: #10B981;
-            font-weight: 600;
+            font-family: var(--mono);
+            font-size: 0.8rem;
+            color: var(--accent);
+            white-space: nowrap;
         }
-        
+
         /* Footer */
         footer {
-            text-align: center;
-            color: var(--text-secondary);
-            padding: 3rem 0 2rem;
-            font-size: 0.9rem;
-        }
-        
-        footer a {
-            color: var(--primary);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        footer a:hover {
-            color: var(--secondary);
-        }
-        
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 1rem;
-        }
-        
-        .footer-links a {
+            margin-top: 32px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
         }
-        
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+
+        footer p {
+            color: var(--muted);
+            font-size: 0.8rem;
         }
-        
-        .hero { animation: fadeInUp 0.8s ease-out; }
-        .card:nth-child(1) { animation: fadeInUp 0.8s ease-out 0.1s both; }
-        .card:nth-child(2) { animation: fadeInUp 0.8s ease-out 0.2s both; }
-        .card:nth-child(3) { animation: fadeInUp 0.8s ease-out 0.3s both; }
-        
-        /* Responsive */
-        @media (max-width: 640px) {
-            .hero h1 { font-size: 2.5rem; }
-            .logo { width: 100px; height: 100px; font-size: 2.5rem; }
-            .btn-group { flex-direction: column; }
-            .btn { width: 100%; justify-content: center; }
-            .package-item { flex-direction: column; gap: 1rem; text-align: center; }
-            .package-info { flex-direction: column; }
+
+        footer a {
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            color: var(--accent);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <div class="bg-gradient"></div>
-    <div class="grid-pattern"></div>
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
-    
     <main class="container">
         <div class="hero">
-            <div class="logo-container">
-                <div class="logo">🌑</div>
-            </div>
+            <div class="logo">🌑</div>
             <h1>ShadowFlow</h1>
             <p class="tagline">iOS Jailbreak Automation Toolchain</p>
             <div class="badges">
-                <span class="badge"><span class="icon">✓</span> Rootful</span>
-                <span class="badge"><span class="icon">✓</span> Rootless</span>
-                <span class="badge"><span class="icon">✓</span> Roothide</span>
-                <span class="badge"><span class="icon">📲</span> TrollStore</span>
-                <span class="badge"><span class="icon">📦</span> Sileo</span>
-                <span class="badge"><span class="icon">🦓</span> Zebra</span>
-                <span class="badge"><span class="icon">📱</span> Cydia</span>
+                <span class="badge">✓ rootful</span>
+                <span class="badge">✓ rootless</span>
+                <span class="badge">✓ roothide</span>
+                <span class="badge">trollstore</span>
+                <span class="badge">sileo</span>
+                <span class="badge">zebra</span>
+                <span class="badge">cydia</span>
             </div>
         </div>
 
-        <div class="card">
-            <h3><span class="emoji">📦</span> Add Repository</h3>
-            <p>Copy this URL and add it to your favorite package manager:</p>
+        <section class="card">
+            <h2>Add Repository</h2>
+            <p>Copy this URL and add it to your package manager:</p>
             <div class="repo-url-container">
-                <div class="copied-toast" id="copiedToast">✓ Copied!</div>
+                <div class="copied-toast" id="copiedToast">$ copied</div>
                 <div class="repo-url" id="repoUrl" onclick="copyUrl()">
                     <span id="urlText">https://shadowflow-repo.zios.tools/</span>
-                    <svg class="copy-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                         <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
                     </svg>
                 </div>
             </div>
             <div class="btn-group">
-                <a href="sileo://source/https://shadowflow-repo.zios.tools/" class="btn btn-primary">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                <a href="sileo://source/https://shadowflow-repo.zios.tools/" class="btn">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
                     Add to Sileo
                 </a>
-                <a href="cydia://url/https://cydia.saurik.com/api/share#?source=https://shadowflow-repo.zios.tools/" class="btn btn-secondary">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                <a href="cydia://url/https://cydia.saurik.com/api/share#?source=https://shadowflow-repo.zios.tools/" class="btn">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
                     Add to Cydia
                 </a>
             </div>
-        </div>
+        </section>
 
-        <div class="card">
-            <h3><span class="emoji">📱</span> Available Packages</h3>
-            <div class="packages-list">
-                <div class="package-item">
-                    <div class="package-info">
-                        <div class="package-icon">🌑</div>
-                        <div class="package-details">
-                            <h4>ShadowFlow</h4>
-                            <span>Proxy management, device spoofing, VNC remote access</span>
-                        </div>
-                    </div>
-                    <div class="package-version">v2.0.1</div>
+        <section class="card">
+            <h2>Available Packages</h2>
+            <div class="package-item">
+                <div class="package-icon">🌑</div>
+                <div class="package-details">
+                    <h4>shadowflow</h4>
+                    <span>proxy management, device spoofing, VNC remote access</span>
                 </div>
+                <div class="package-version">v2.0.1</div>
             </div>
-        </div>
+        </section>
 
-        <div class="card">
-            <h3><span class="emoji">📲</span> TrollStore (No Jailbreak)</h3>
-            <p>Install ShadowFlow on iOS 14.0–16.6.1 without a jailbreak — download the .tipa and open it with TrollStore:</p>
+        <section class="card">
+            <h2>TrollStore — No Jailbreak</h2>
+            <p>Install ShadowFlow on iOS 14.0–16.6.1 without a jailbreak. Download the .tipa and open it with TrollStore:</p>
             <div class="btn-group">
                 <a href="https://shadowflow-repo.zios.tools/tipas/ShadowFlow_2.0.1-9-2%2Bdebug.tipa" class="btn btn-primary">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 16l-5-5h3V4h4v7h3l-5 5zm-7 4h14v-2H5v2z"/></svg>
-                    Download .tipa (v2.0.1)
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 16l-5-5h3V4h4v7h3l-5 5zm-7 4h14v-2H5v2z"/></svg>
+                    Download .tipa — v2.0.1
                 </a>
             </div>
-        </div>
+        </section>
 
-        <div class="card">
-            <h3><span class="emoji">⚡</span> Compatibility</h3>
+        <section class="card">
+            <h2>Compatibility</h2>
             <div class="table-container">
                 <table>
                     <thead>
@@ -660,36 +428,33 @@
                         <tr>
                             <td>Rootful (unc0ver, checkra1n)</td>
                             <td><code>iphoneos-arm</code></td>
-                            <td class="status-yes">✓ Supported</td>
+                            <td class="status-yes">✓ supported</td>
                         </tr>
                         <tr>
                             <td>Rootless (Dopamine, palera1n)</td>
                             <td><code>iphoneos-arm64</code></td>
-                            <td class="status-yes">✓ Supported</td>
+                            <td class="status-yes">✓ supported</td>
                         </tr>
                         <tr>
                             <td>Roothide</td>
                             <td><code>iphoneos-arm64e</code></td>
-                            <td class="status-yes">✓ Supported</td>
+                            <td class="status-yes">✓ supported</td>
                         </tr>
                         <tr>
                             <td>TrollStore (no jailbreak, iOS ≤ 16.6.1)</td>
                             <td><code>arm64 / arm64e</code></td>
-                            <td class="status-yes">✓ Supported</td>
+                            <td class="status-yes">✓ supported</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-        </div>
+        </section>
 
         <footer>
             <p>Made with ❤️ for the jailbreak community</p>
-            <div class="footer-links">
-                <a href="https://github.com/tdzard94/ShadowFlowRepo" target="_blank">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                    GitHub
-                </a>
-            </div>
+            <a href="https://github.com/tdzard94/ShadowFlowRepo" target="_blank">
+                github →
+            </a>
         </footer>
     </main>
 
@@ -702,7 +467,7 @@
                 setTimeout(() => toast.classList.remove('show'), 2000);
             });
         }
-        
+
         // Auto-update repo URL based on current location
         if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
             const url = window.location.origin + window.location.pathname.replace(/\/[^\/]*$/, '/');
