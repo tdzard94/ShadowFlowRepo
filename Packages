@@ -43,19 +43,19 @@ Name: ShadowFlow
 SileoDepiction: https://shadowflow-repo.zios.tools/depictions/native/com.shadowtech.shadowflow.roothide/depiction.json
 
 Package: com.shadowtech.shadowflow.rootless
-Version: 2.0.1-9-31+debug
+Version: 2.0.1-9-32+debug
 Architecture: iphoneos-arm64
 Maintainer: ShadowTech
-Installed-Size: 11116
-Depends: preferenceloader, firmware (>= 14.0), zip (>= 2.2), unzip (>= 6.0), ldid (>= 2.0), sqlite3, bash
-Conflicts: com.shadowtech.shadowflow, com.shadowtech.shadowflow.roothide, com.shadowtech.shadowflow.rootless, com.shadowtech.shadowflow.rootful
+Installed-Size: 7476
+Depends: preferenceloader, firmware (>= 14.0), zip (>= 2.2), unzip (>= 6.0), ldid (>= 2.0), sqlite3, bash, com.0x17.persona.proxy
+Conflicts: com.shadowtech.shadowflow, com.shadowtech.shadowflow.roothide, com.shadowtech.shadowflow.rootless, com.shadowtech.shadowflow.rootful, com.shadowtech.shadowflow.proxy
 Replaces: com.shadowtech.shadowflow, com.shadowtech.shadowflow.roothide, com.shadowtech.shadowflow.rootless, com.shadowtech.shadowflow.rootful
 Provides: com.shadowtech.shadowflow
-Filename: debs/com.shadowtech.shadowflow.rootless_2.0.1-9-31+debug_iphoneos-arm64.deb
-Size: 2600394
-MD5sum: 108c6d71553ea0812a4f2e0c3d104542
-SHA1: 985ecfaf78f9e5fcd42383815a587bd9ad8d9f92
-SHA256: 0fa1653f1e8005adfc0455ce3718ad16717451678b55ff1289c3aea2b3abeda1
+Filename: debs/com.shadowtech.shadowflow.rootless_2.0.1-9-32+debug_iphoneos-arm64.deb
+Size: 1705380
+MD5sum: bb45b4cd881f5d7d7195a537059a5ae1
+SHA1: fdc77628ac63019322f28e7327856ad39d1428a1
+SHA256: 6eb447809e89e042fc4d3b4a28b57c0cb37a76a7df56a31a39591682e272e5be
 Section: System
 Description: iOS Jailbreak Automation Toolchain - proxy management and app automation
 Tag: role::hacker
